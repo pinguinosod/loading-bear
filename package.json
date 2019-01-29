@@ -1,0 +1,36 @@
+{
+  "name": "@pinguinosod/loading-bear",
+  "version": "1.0.2",
+  "description": "lightweight and shitty progress bar",
+  "main": "dist/loading-bear.min.js",
+  "directories": {
+    "example": "examples",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src/loading-bear.js --out-file dist/loading-bear.min.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pinguinosod/loading-bear.git"
+  },
+  "keywords": [
+    "progress",
+    "bar",
+    "loading",
+    "indicator"
+  ],
+  "author": "PinguinoSod",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pinguinosod/loading-bear/issues"
+  },
+  "homepage": "https://github.com/pinguinosod/loading-bear#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "babel-preset-minify": "^0.5.0"
+  }
+}
