@@ -1,6 +1,6 @@
 /**
  * Creates a progress bar.
- * @param {int} duration The duration in miliseconds.
+ * @param {int} duration The duration in milliseconds.
  */
 function loadingBear(duration) {
   /**
