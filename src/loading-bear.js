@@ -1,51 +1,65 @@
+/**
+ * Creates a progress bar.
+ * @param {int} duration The duration in miliseconds.
+ */
 function loadingBear(duration) {
-    hideEverything()
-    appendLoadingBar()
+  /**
+   * Hides every element in document.body.
+   */
+  function hideEverything() {
+    document.body.childNodes.forEach((node) => {
+      if (node.nodeType !== Node.TEXT_NODE) {
+        node.style.opacity = '0';
+      }
+    });
 
-    const lbearTimeOut = window.setTimeout(function () {
-        showEverything()
-        document.body.removeChild(document.getElementById('loading-bear'))
-    }, duration)
+    document.body.style.visibility = 'hidden';
+  }
 
+  /**
+   * Shows every element in document.body.
+   */
+  function showEverything() {
+    document.body.childNodes.forEach((node) => {
+      if (node.nodeType !== Node.TEXT_NODE) {
+        node.style.opacity = '1';
+      }
+    });
 
-    function hideEverything() {
-        document.body.childNodes.forEach(function (node) {
-            if (node.nodeType !== Node.TEXT_NODE) {
-                node.style.opacity = '0'
-            }
-        })
+    document.body.style.visibility = 'visible';
+  }
 
-        document.body.style.visibility = 'hidden'
-    }
+  /**
+   * Appends the progress bar to document.body.
+   */
+  function appendLoadingBar() {
+    const lbear = document.createElement('div');
+    lbear.id = 'l-bear';
+    lbear.style.visibility = 'visible';
+    lbear.style.width = '100%';
+    lbear.style.height = '50px';
+    lbear.style.backgroundColor = '#c8c8c8';
 
-    function showEverything() {
-        document.body.childNodes.forEach(function (node) {
-            if (node.nodeType !== Node.TEXT_NODE) {
-                node.style.opacity = '1'
-            }
-        })
+    const lbearInner = document.createElement('div');
+    lbearInner.style.height = '100%';
+    lbearInner.style.backgroundColor = '#842';
+    lbearInner.style.transition = 'width ' + duration + 'ms linear';
+    lbearInner.style.width = '0%';
+    lbear.appendChild(lbearInner);
+    document.body.insertBefore(lbear, document.body.firstChild);
 
-        document.body.style.visibility = 'visible'
-    }
+    window.setTimeout(() => { // cheesy workaround
+      document.getElementById('l-bear').childNodes[0].style.width = '100%';
+    }, 1);
+  }
 
-    function appendLoadingBar() {
-        let lbear = document.createElement('div')
-        lbear.id = 'loading-bear'
-        lbear.style.visibility = 'visible'
-        lbear.style.width = '100%'
-        lbear.style.height = '50px'
-        lbear.style.backgroundColor = '#c8c8c8'
+  hideEverything();
+  appendLoadingBar();
 
-        let lbearInner = document.createElement('div')
-        lbearInner.style.height = '100%'
-        lbearInner.style.backgroundColor = '#842'
-        lbearInner.style.transition = 'width ' + duration + 'ms linear'
-        lbearInner.style.width = '0%'
-        lbear.appendChild(lbearInner)
-        document.body.insertBefore(lbear, document.body.firstChild)
-
-        const cheesyWorkaround = window.setTimeout(function () {
-            document.getElementById('loading-bear').childNodes[0].style.width = '100%'
-        }, 10)
-    }
+  window.setTimeout(() => {
+    showEverything();
+    document.body.removeChild(document.getElementById('l-bear'));
+  }, duration);
 }
+
+module.exports = loadingBear;
