@@ -48,7 +48,7 @@ function loadingBear(duration) {
     lbear.appendChild(lbearInner);
     document.body.insertBefore(lbear, document.body.firstChild);
 
-    window.setTimeout(() => { // cheesy workaround
+    setTimeout(() => { // cheesy workaround
       document.getElementById('l-bear').childNodes[0].style.width = '100%';
     }, 1);
   }
@@ -56,7 +56,7 @@ function loadingBear(duration) {
   hideEverything();
   appendLoadingBar();
 
-  window.setTimeout(() => {
+  setTimeout(() => {
     showEverything();
     document.body.removeChild(document.getElementById('l-bear'));
   }, duration);
