@@ -1,6 +1,6 @@
 {
   "name": "@pinguinosod/loading-bear",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "lightweight and shitty progress bar",
   "main": "dist/loading-bear.min.js",
   "directories": {
