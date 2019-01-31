@@ -25,7 +25,6 @@ Execute the function:
 
 ---
 
-There is an example in the examples folder of this repository.
-
 ## License
+
 MIT
