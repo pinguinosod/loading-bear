@@ -9,7 +9,6 @@ function loadingBear(duration) {
    */
   function generateLBearContainer() {
     const lBearContainer = document.createElement('div');
-    lBearContainer.id = 'l-bear-container';
     lBearContainer.style.position = 'fixed';
     lBearContainer.style.top = '0';
     lBearContainer.style.right = '0';
@@ -28,7 +27,6 @@ function loadingBear(duration) {
    */
   function generateLBear() {
     const lBear = document.createElement('div');
-    lBear.id = 'l-bear';
     lBear.style.visibility = 'visible';
     lBear.style.width = '100%';
     lBear.style.height = '50px';
@@ -60,11 +58,11 @@ function loadingBear(duration) {
   document.body.style.overflow = 'hidden';
 
   setTimeout(() => { // cheesy workaround
-    document.getElementById('l-bear').childNodes[0].style.width = '100%';
+    lBearInner.style.width = '100%';
   }, 10);
 
   setTimeout(() => {
-    document.body.removeChild(document.getElementById('l-bear-container'));
+    document.body.removeChild(lBearContainer);
     document.body.style.overflow = startingBodyOverflow;
   }, duration);
 }
