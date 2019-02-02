@@ -1,64 +1,71 @@
 /**
- * Creates a progress bar.
+ * Creates a progress bar and appends it to document's body
  * @param {int} duration The duration in milliseconds.
  */
 function loadingBear(duration) {
   /**
-   * Hides every element in document.body.
+   * Creates bar's container element.
+   * @return {Element} lBearContainer
    */
-  function hideEverything() {
-    document.body.childNodes.forEach((node) => {
-      if (node.nodeType !== Node.TEXT_NODE) {
-        node.style.opacity = '0';
-      }
-    });
-
-    document.body.style.visibility = 'hidden';
+  function generateLBearContainer() {
+    const lBearContainer = document.createElement('div');
+    lBearContainer.id = 'l-bear-container';
+    lBearContainer.style.position = 'fixed';
+    lBearContainer.style.top = '0';
+    lBearContainer.style.right = '0';
+    lBearContainer.style.bottom = '0';
+    lBearContainer.style.left = '0';
+    lBearContainer.style.backgroundColor = 'white';
+    lBearContainer.style.width = '100%';
+    lBearContainer.style.height = '100%';
+    lBearContainer.style.zIndex = '9999';
+    return lBearContainer;
   }
 
   /**
-   * Shows every element in document.body.
+   * Creates bar element.
+   * @return {Element} lBear
    */
-  function showEverything() {
-    document.body.childNodes.forEach((node) => {
-      if (node.nodeType !== Node.TEXT_NODE) {
-        node.style.opacity = '1';
-      }
-    });
-
-    document.body.style.visibility = 'visible';
+  function generateLBear() {
+    const lBear = document.createElement('div');
+    lBear.id = 'l-bear';
+    lBear.style.visibility = 'visible';
+    lBear.style.width = '100%';
+    lBear.style.height = '50px';
+    lBear.style.backgroundColor = '#c8c8c8';
+    return lBear;
   }
 
   /**
-   * Appends the progress bar to document.body.
+   * Creates bar's inner element.
+   * @return {Element} lBearInner
    */
-  function appendLoadingBar() {
-    const lbear = document.createElement('div');
-    lbear.id = 'l-bear';
-    lbear.style.visibility = 'visible';
-    lbear.style.width = '100%';
-    lbear.style.height = '50px';
-    lbear.style.backgroundColor = '#c8c8c8';
-
-    const lbearInner = document.createElement('div');
-    lbearInner.style.height = '100%';
-    lbearInner.style.backgroundColor = '#842';
-    lbearInner.style.transition = 'width ' + duration + 'ms linear';
-    lbearInner.style.width = '0%';
-    lbear.appendChild(lbearInner);
-    document.body.insertBefore(lbear, document.body.firstChild);
-
-    setTimeout(() => { // cheesy workaround
-      document.getElementById('l-bear').childNodes[0].style.width = '100%';
-    }, 1);
+  function generateLBearInner() {
+    const lBearInner = document.createElement('div');
+    lBearInner.style.height = '100%';
+    lBearInner.style.backgroundColor = '#842';
+    lBearInner.style.transition = 'width ' + duration + 'ms linear';
+    lBearInner.style.width = '0%';
+    return lBearInner;
   }
 
-  hideEverything();
-  appendLoadingBar();
+  const startingBodyOverflow = document.body.style.overflow;
+  const lBearContainer = generateLBearContainer();
+  const lBear = generateLBear();
+  const lBearInner = generateLBearInner();
+
+  lBear.appendChild(lBearInner);
+  lBearContainer.appendChild(lBear);
+  document.body.insertBefore(lBearContainer, document.body.firstChild);
+  document.body.style.overflow = 'hidden';
+
+  setTimeout(() => { // cheesy workaround
+    document.getElementById('l-bear').childNodes[0].style.width = '100%';
+  }, 10);
 
   setTimeout(() => {
-    showEverything();
-    document.body.removeChild(document.getElementById('l-bear'));
+    document.body.removeChild(document.getElementById('l-bear-container'));
+    document.body.style.overflow = startingBodyOverflow;
   }, duration);
 }
 
