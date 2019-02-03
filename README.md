@@ -6,7 +6,7 @@ A lightweight and shitty (for now) progress bar which hides everything else.
 
 ### CDN
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@pinguinosod/loading-bear@1/dist/loading-bear.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@pinguinosod/loading-bear@2/dist/loading-bear.min.js"></script>
 ```
 
 ### npm
@@ -22,7 +22,20 @@ You should see the basic example from the official repo [here](https://github.co
 
 Execute the function:
 ```javascript
-loadingBear(3000);
+loadingBear();
+```
+
+### Options
+
+You can send an options object as parameter to the loadingBear function:
+```javascript
+loadingBear({
+    'duration': 3000, // The duration in milliseconds
+    'height': '20px', // The height of the progress bar
+    'lBearClassContainer': 'container', // Container element's class
+    'lBearClass': 'progress', // Wrapper bar element's class
+    'lBearInnerClass': 'progress-bar' // Inner bar element's class
+  });
 ```
 
 ---

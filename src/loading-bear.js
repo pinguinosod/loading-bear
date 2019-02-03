@@ -1,8 +1,23 @@
 /**
  * Creates a progress bar and appends it to document's body
- * @param {int} duration The duration in milliseconds.
+ * @param {Object} options
  */
-function loadingBear(duration) {
+function loadingBear(options = {}) {
+  /**
+   * Fills options object with default values
+   * @param {Object} options
+   * @return {Object} options
+   */
+  function fillOptions(options = {}) {
+    if (isNaN(options.duration) || options.duration < 21) {
+      options.duration = 3000;
+    }
+    if (!options.height) {
+      options.height = '40px';
+    }
+    return options;
+  }
+
   /**
    * Creates bar's container element.
    * @return {Element} lBearContainer
@@ -18,6 +33,7 @@ function loadingBear(duration) {
     lBearContainer.style.width = '100%';
     lBearContainer.style.height = '100%';
     lBearContainer.style.zIndex = '9999';
+    lBearContainer.className = options.lBearClassContainer;
     return lBearContainer;
   }
 
@@ -28,8 +44,9 @@ function loadingBear(duration) {
   function generateLBear() {
     const lBear = document.createElement('div');
     lBear.style.width = '100%';
-    lBear.style.height = '50px';
+    lBear.style.height = options.height;
     lBear.style.backgroundColor = '#c8c8c8';
+    lBear.className = options.lBearClass;
     return lBear;
   }
 
@@ -41,11 +58,13 @@ function loadingBear(duration) {
     const lBearInner = document.createElement('div');
     lBearInner.style.height = '100%';
     lBearInner.style.backgroundColor = '#842';
-    lBearInner.style.transition = 'width ' + duration + 'ms linear';
+    lBearInner.style.transition = 'width ' + options.duration + 'ms linear';
     lBearInner.style.width = '0%';
+    lBearInner.className = options.lBearInnerClass;
     return lBearInner;
   }
 
+  options = fillOptions(options);
   const startingBodyOverflow = document.body.style.overflow;
   const lBearContainer = generateLBearContainer();
   const lBear = generateLBear();
@@ -56,14 +75,14 @@ function loadingBear(duration) {
   document.body.insertBefore(lBearContainer, document.body.firstChild);
   document.body.style.overflow = 'hidden';
 
-  setTimeout(() => { // cheesy workaround
+  setTimeout(() => { // cheesy workaround, wait 20ms to get the element in place
     lBearInner.style.width = '100%';
-  }, 10);
+  }, 20);
 
   setTimeout(() => {
     document.body.removeChild(lBearContainer);
     document.body.style.overflow = startingBodyOverflow;
-  }, duration);
+  }, options.duration);
 }
 
 module.exports = loadingBear;
