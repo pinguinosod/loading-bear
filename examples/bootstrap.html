@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Loading Bear - Bootstrap Example</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@pinguinosod/loading-bear@2/dist/loading-bear.min.js"></script>
+    <script>
+      const lBearOptions =
+          {
+            'duration': 3000,
+            'height': '20px',
+            'lBearClassContainer': 'container d-flex align-items-center',
+            'lBearClass': 'progress',
+            'lBearInnerClass': 'progress-bar progress-bar-striped bg-primary progress-bar-animated',
+          };
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Loading Bear - Bootstrap Example</h1>
+            <div class="alert alert-primary" role="alert">
+                Press the button below to see loading bear in action
+            </div>
+            <div>
+                <button type="button" class="btn btn-primary"
+                        onclick="loadingBear(lBearOptions);">Click Me
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <hr>
+            <p>In this example, we send the following object as parameter to the loadingBear function:</p>
+            <pre>
+{
+    'duration': 3000,
+    'height': '20px',
+    'lBearClassContainer': 'container d-flex align-items-center',
+    'lBearClass': 'progress',
+    'lBearInnerClass': 'progress-bar progress-bar-striped bg-primary progress-bar-animated'
+};
+            </pre>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <hr>
+            <p>Note: The class names are from
+                <a href="https://getbootstrap.com/docs/4.1/components/progress/">bootstrap</a>
+            </p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -16,7 +16,7 @@ $ npm i @pinguinosod/loading-bear
 
 ## Example
 
-You should see the basic example from the official repo [here](https://github.com/pinguinosod/loading-bear/blob/master/examples/basic.html).
+You should see the examples from the official repo [here](https://github.com/pinguinosod/loading-bear/tree/master/examples).
 
 ## Usage
 
