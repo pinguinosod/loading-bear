@@ -4,13 +4,15 @@ A lightweight and shitty (for now) progress bar which hides everything else.
 
 ## Installation
 
-Include the javascript file:
+### CDN
+```html
+<script src="https://cdn.jsdelivr.net/npm/@pinguinosod/loading-bear@1/dist/loading-bear.min.js"></script>
+```
 
-`<script src="https://cdn.jsdelivr.net/npm/@pinguinosod/loading-bear@1/dist/loading-bear.min.js"></script>`
-
-You can also download it through NPM:
-
-`npm i @pinguinosod/loading-bear`
+### npm
+```bash
+$ npm i @pinguinosod/loading-bear
+```
 
 ## Example
 
@@ -18,10 +20,10 @@ You should see the basic example from the official repo [here](https://github.co
 
 ## Usage
 
-
 Execute the function:
-
-`loadingBear(3000);`
+```javascript
+loadingBear(3000);
+```
 
 ---
 
