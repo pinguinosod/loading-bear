@@ -27,7 +27,6 @@ function loadingBear(duration) {
    */
   function generateLBear() {
     const lBear = document.createElement('div');
-    lBear.style.visibility = 'visible';
     lBear.style.width = '100%';
     lBear.style.height = '50px';
     lBear.style.backgroundColor = '#c8c8c8';
