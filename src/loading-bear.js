@@ -33,7 +33,7 @@ function loadingBear(options = {}) {
     lBearContainer.style.width = '100%';
     lBearContainer.style.height = '100%';
     lBearContainer.style.zIndex = '9999';
-    lBearContainer.className = options.lBearClassContainer;
+    lBearContainer.className = options.lBearContainerClass;
     return lBearContainer;
   }
 

@@ -32,7 +32,7 @@ You can send an options object as parameter to the loadingBear function:
 loadingBear({
     'duration': 3000, // The duration in milliseconds
     'height': '20px', // The height of the progress bar
-    'lBearClassContainer': 'container', // Container element's class
+    'lBearContainerClass': 'container', // Container element's class
     'lBearClass': 'progress', // Wrapper bar element's class
     'lBearInnerClass': 'progress-bar' // Inner bar element's class
   });
