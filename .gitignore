@@ -1,4 +1,5 @@
 .idea
+coverage
 dist
 loading-bear.iml
 node_modules

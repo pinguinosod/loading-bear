@@ -8,10 +8,25 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode production",
+    "test": "jest --collectCoverage",
+    "build": "npm run test && webpack --mode production",
     "lint": "eslint src/",
     "prepare": "npm run build"
+  },
+  "jest": {
+    "verbose": true
+  },
+  "babel": {
+    "env": {
+      "test": {
+        "presets": [
+          "@babel/preset-env"
+        ],
+        "plugins": [
+          "rewire"
+        ]
+      }
+    }
   },
   "repository": {
     "type": "git",
@@ -33,10 +48,13 @@
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.3.1",
     "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.1.0",
     "babel-loader": "^8.0.5",
+    "babel-plugin-rewire": "^1.2.0",
     "eslint": "^5.12.1",
     "eslint-config-google": "^0.11.0",
     "eslint-loader": "^2.1.1",
+    "jest": "^24.1.0",
     "webpack": "^4.29.0",
     "webpack-cli": "^3.2.1"
   }
