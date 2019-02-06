@@ -31,13 +31,13 @@ function fillOptions(options = {}) {
 function generateLBearContainer(options) {
   const lBearContainer = document.createElement('div');
   lBearContainer.style.position = 'fixed';
-  lBearContainer.style.top = '0';
-  lBearContainer.style.right = '0';
-  lBearContainer.style.bottom = '0';
-  lBearContainer.style.left = '0';
-  lBearContainer.style.backgroundColor = 'white';
+  lBearContainer.style.top = '0px';
+  lBearContainer.style.right = '0px';
+  lBearContainer.style.bottom = '0px';
+  lBearContainer.style.left = '0px';
   lBearContainer.style.width = '100%';
   lBearContainer.style.height = '100%';
+  lBearContainer.style.backgroundColor = 'white';
   lBearContainer.style.zIndex = '9999';
   lBearContainer.className = options.lBearContainerClass;
   return lBearContainer;
@@ -52,7 +52,7 @@ function generateLBear(options) {
   const lBear = document.createElement('div');
   lBear.style.width = '100%';
   lBear.style.height = options.height;
-  lBear.style.backgroundColor = '#c8c8c8';
+  lBear.style.backgroundColor = 'rgb(200, 200, 200)';
   lBear.className = options.lBearClass;
   return lBear;
 }
@@ -64,10 +64,10 @@ function generateLBear(options) {
  */
 function generateLBearInner(options) {
   const lBearInner = document.createElement('div');
-  lBearInner.style.height = '100%';
-  lBearInner.style.backgroundColor = '#842';
-  lBearInner.style.transition = 'width ' + options.duration + 'ms linear';
   lBearInner.style.width = '0%';
+  lBearInner.style.height = '100%';
+  lBearInner.style.backgroundColor = 'rgb(136, 68, 34)';
+  lBearInner.style.transition = 'width ' + options.duration + 'ms linear';
   lBearInner.className = options.lBearInnerClass;
   return lBearInner;
 }
