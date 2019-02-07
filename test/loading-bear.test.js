@@ -10,7 +10,10 @@ const loadingBear = require('../src/loading-bear').
     __get__('loadingBear');
 
 describe('function fillOptions', () => {
-  const defaultOptions = fillOptions({});
+  let defaultOptions;
+  beforeEach(() => {
+    defaultOptions = fillOptions({});
+  });
 
   test('Should fill with default duration 3000', () => {
     expect(defaultOptions.duration).toBe(3000);
@@ -65,7 +68,10 @@ describe('function fillOptions', () => {
 });
 
 describe('function generateLBearContainer', () => {
-  const lBearContainer = generateLBearContainer({});
+  let lBearContainer;
+  beforeEach(() => {
+    lBearContainer = generateLBearContainer({});
+  });
 
   test('Happy Path', () => {
     expect(typeof lBearContainer === 'object').toBeTruthy();
@@ -119,7 +125,10 @@ describe('function generateLBearContainer', () => {
 });
 
 describe('function generateLBear', () => {
-  const lBear = generateLBear({});
+  let lBear;
+  beforeEach(() => {
+    lBear = generateLBear({});
+  });
 
   test('Happy Path', () => {
     expect(typeof lBear === 'object').toBeTruthy();
@@ -151,7 +160,10 @@ describe('function generateLBear', () => {
 });
 
 describe('function generateLBearInner', () => {
-  const lBearInner = generateLBearInner({});
+  let lBearInner;
+  beforeEach(() => {
+    lBearInner = generateLBearInner({});
+  });
 
   test('Happy Path', () => {
     expect(typeof lBearInner === 'object').toBeTruthy();
