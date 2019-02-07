@@ -6,6 +6,10 @@ const generateLBear = require('../src/loading-bear').
     __get__('generateLBear');
 const generateLBearInner = require('../src/loading-bear').
     __get__('generateLBearInner');
+const setFullWidthToElem = require('../src/loading-bear').
+    __get__('setFullWidthToElem');
+const eliminateLBear = require('../src/loading-bear').
+    __get__('eliminateLBear');
 const loadingBear = require('../src/loading-bear').
     __get__('loadingBear');
 
@@ -65,6 +69,20 @@ describe('function fillOptions', () => {
     expect(filledOptions.lBearInnerClass).
         toEqual(initialOptions.lBearInnerClass);
   });
+
+  test('Should fill with default values even if no parameter object is sent',
+      () => {
+        const expectedDefaultOptions = {
+          'duration': 3000,
+          'height': '40px',
+          'lBearClass': '',
+          'lBearContainerClass': '',
+          'lBearInnerClass': '',
+        };
+        const filledDefaultOptions = fillOptions();
+
+        expect(filledDefaultOptions).toEqual(expectedDefaultOptions);
+      });
 });
 
 describe('function generateLBearContainer', () => {
@@ -208,9 +226,48 @@ describe('function generateLBearInner', () => {
   });
 });
 
+describe('function setFullWidthToElem', () => {
+  let dummyHeadding = document.createElement('H3');
+  beforeEach(() => {
+    dummyHeadding.style.width = '0%';
+  });
+
+  test('Smoke Test', () => {
+    expect(dummyHeadding.style.width).toBe('0%');
+  });
+
+  test('Happy Path', () => {
+    setFullWidthToElem(dummyHeadding);
+
+    expect(dummyHeadding.style.width).toBe('100%');
+  });
+});
+
+describe('function eliminateLBear', () => {
+  let dummySpan = document.createElement('SPAN');
+  beforeEach(() => {
+    dummySpan.id = 'theDummySpan';
+    document.body.insertBefore(dummySpan, document.body.firstChild);
+    document.body.style.overflow = 'hidden';
+  });
+
+  test('Smoke Test', () => {
+    expect(document.body.firstChild.nodeName).toBe('SPAN');
+    expect(document.getElementById('theDummySpan')).toBeTruthy();
+    expect(document.body.style.overflow).toBe('hidden');
+  });
+
+  test('Happy Path', () => {
+    eliminateLBear(dummySpan, 'auto');
+
+    expect(document.body.style.overflow).toBe('auto');
+    expect(document.getElementById('theDummySpan')).toBeFalsy();
+  });
+});
+
 describe('function loadingBear', () => {
   beforeEach(() => {
-    const headingNode = document.createElement('h1');
+    const headingNode = document.createElement('H1');
     const textNode = document.createTextNode('SWAG');
     headingNode.appendChild(textNode);
     document.body.insertBefore(headingNode, document.body.firstChild);
@@ -225,4 +282,41 @@ describe('function loadingBear', () => {
 
     expect(document.body.firstChild.nodeName).toBe('DIV');
   });
+
+  test('Should call setTimeout two times', () => {
+    jest.useFakeTimers();
+
+    loadingBear();
+
+    expect(setTimeout).toHaveBeenCalledTimes(2);
+  });
+
+  test('Should call setTimeout for the first time with 20ms', () => {
+    jest.useFakeTimers();
+
+    loadingBear();
+
+    expect(setTimeout).toHaveBeenNthCalledWith(1, expect.any(Function), 20);
+  });
+
+  test('Should call setTimeout for the second time with 3000ms as default',
+      () => {
+        jest.useFakeTimers();
+
+        loadingBear();
+
+        expect(setTimeout).
+            toHaveBeenNthCalledWith(2, expect.any(Function), 3000);
+      });
+
+  test(
+      'Should call setTimeout for the second time with duration sent in options object',
+      () => {
+        jest.useFakeTimers();
+
+        loadingBear({'duration': 8812});
+
+        expect(setTimeout).
+            toHaveBeenNthCalledWith(2, expect.any(Function), 8812);
+      });
 });
