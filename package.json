@@ -1,7 +1,7 @@
 {
   "name": "@pinguinosod/loading-bear",
   "version": "2.2.1",
-  "description": "lightweight and shitty progress bar",
+  "description": "lightweight progress bar, runs for a desired duration.",
   "main": "dist/loading-bear.min.js",
   "directories": {
     "example": "examples",
